@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: wallet-user-registry
+  name: wallet-user-registry
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: wallet-user-registry
+      app.kubernetes.io/name: wallet-user-registry
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: wallet-user-registry
+        app.kubernetes.io/name: wallet-user-registry
+    spec:
+      containers:
+      - name: wallet-user-registry
+        image: in2kizuna/wallet-user-registry:v2.0.0
+        imagePullPolicy: Always
+        env:
+        # Logging Configuration
+        - name: LOGGING_LEVEL_ES_IN2_WALLETUSERREGISTRY
+          value: "DEBUG"
+        # OpenAPI Configuration
+        - name: OPENAPI_SERVER_URL
+          value: "https://dome-wallet.eu/wallet-data"
+        - name: OPENAPI_SERVER_DESCRIPTION
+          value: "Blockchain Connector Test Server"
+        - name: OPENAPI_INFO_TITLE
+          value: "Blockchain Connector"
+        - name: OPENAPI_INFO_DESCRIPTION
+          value: "Blockchain Connector Component"
+        - name: OPENAPI_INFO_VERSION
+          value: "2.0.0"
+        - name: OPENAPI_INFO_TERMS_OF_SERVICE
+          value: "https://example.com/terms"
+        - name: OPENAPI_INFO_LICENSE_NAME
+          value: "Apache 2.0"
+        - name: OPENAPI_INFO_LICENSE_URL
+          value: "https://www.apache.org/licenses/LICENSE-2.0.html"
+        - name: OPENAPI_INFO_CONTACT_NAME
+          value: "IN2, Ingeniería de la Información"
+        - name: OPENAPI_INFO_CONTACT_URL
+          value: "https://in2.es"
+        - name: OPENAPI_INFO_CONTACT_EMAIL
+          value: "contacto@in2.es"
+        # Keycloak Configuration
+        - name: KEYCLOAK_URL
+          value: "https://dome-wallet.eu/keycloak"
+        - name: KEYCLOAK_REALM
+          value: "wallet"
+        - name: KEYCLOAK_CLIENT_SECRET
+          value: "fV51P8jFBo8VnFKMMuP3imw3H3i5mNck"
+        - name: KEYCLOAK_CLIENT_ID
+          value: "user-registry-client"
+        # Wallet Router Configuration
+        - name: WALLET_DATA_URL
+          value: "https://dome-wallet.eu/wallet-data"
+        - name: WALLET_WDA_URL
+          value: "https://dome-wallet.eu"

@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: wallet-driving-application
+  name: wallet-driving-application
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: wallet-driving-application
+      app.kubernetes.io/name: wallet-driving-application
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: wallet-driving-application
+        app.kubernetes.io/name: wallet-driving-application
+    spec:
+      containers:
+      - image: in2kizuna/wallet-driving-application:v2.0.0
+        imagePullPolicy: Always
+        name: wallet-driving-application
+        env:
+        - name: WCA_URL
+          value: "https://dome-wallet.eu/wallet-creation-application"
+        - name: DATA_URL
+          value: "https://dome-wallet.eu/wallet-data"
+        - name: LOGIN_URL
+          value: "https://dome-wallet.eu/keycloak/realms/wallet"
+        - name: REGISTER_URL
+          value: "https://dome-wallet.eu/wallet-user-registry"
+        - name: EXECCONT_URI
+          value: "/api/v2/execute-content"
+        - name: VP_URL
+          value: "/api/v2/verifiable-presentation"
+        - name: CRED_URI
+          value: "/api/v2/credentials"
+        - name: CREDID_URI
+          value: "/api/v2/credentials?credentialId="
+        - name: USER_URI
+          value: "/api/v2/users"
