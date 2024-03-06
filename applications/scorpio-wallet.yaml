@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: scorpio-wallet
+  namespace: argocd
+  labels:
+    purpose: wallet
+spec:
+  destination:
+    namespace: dome-wallet
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: ionos/dome-wallet/scorpio
+    repoURL: https://github.com/said-ibrihen-orange/dome-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

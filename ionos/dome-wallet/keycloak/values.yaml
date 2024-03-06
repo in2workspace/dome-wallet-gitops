@@ -1,0 +1,94 @@
+
+keycloak:
+  image: 
+    tag: 21.1.2-debian-11-r1
+  service:
+    type: ClusterIP
+  logging:
+    level: INFO
+  replicaCount: 1
+  auth:
+    adminUser: walletAdmin
+    existingSecret: keycloak-secret
+    passwordSecretKey: keycloak-admin
+  serviceAccount:
+    create: true
+  rbac:
+    create: true
+    rules:
+      - apiGroups:
+        - security.openshift.io
+        resourceNames:
+        - anyuid
+        resources:
+        - securitycontextconstraints
+        verbs:
+        - use
+
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hostname: dome-wallet.eu
+    path: /keycloak
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-dome-wallet
+    tls: true
+
+    extraEnvVars:
+      - name: IMPORT_FILES_LOCATIONS
+        value: "/config/*"
+    containerSecurityContext:
+      enabled: false
+    podSecurityContext:
+      enabled: false
+  
+  # for serving resources
+  httpRelativePath: "/keycloak/"
+
+  keycloakConfigCli:
+    enabled: true
+    # current image does not contain 20.0.3., thus we need this fix
+    command: 
+      - java
+      - -jar
+      - /opt/bitnami/keycloak-config-cli/keycloak-config-cli-20.0.1.jar
+    extraEnvVars:
+      - name: IMPORT_FILES_LOCATIONS
+        value: "/config/*"
+    containerSecurityContext:
+      enabled: false
+    podSecurityContext:
+      enabled: false
+    existingConfigmap: keycloak-wallet-realm
+
+  extraEnvVars:
+  - name: KEYCLOAK_LOG_LEVEL
+    value: INFO
+
+  extraVolumeMounts:
+    - name: profiles
+      mountPath: /opt/bitnami/keycloak/conf/profile.properties
+      subPath: profile.properties
+    - name: providers
+      mountPath: /opt/bitnami/keycloak/providers/
+    - name: data
+      mountPath: /data
+
+  extraVolumes:
+    - name: data
+      emptyDir: {}
+    - name: profiles
+      configMap:
+        name: keycloak-wallet-profile
+    - name: providers
+      emptyDir: {}
+  
+  postgresql:
+    enabled: false
+
+  externalDatabase:
+    host: postgresql-keycloak
+    user: keycloak
+    database: keycloak_wallet
+    existingSecret: postgres-keycloak-secret
+    existingSecretPasswordKey: postgres-password
