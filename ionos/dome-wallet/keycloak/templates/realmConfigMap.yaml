@@ -925,7 +925,7 @@ data:
           "enabled": true,
           "alwaysDisplayInConsole": false,
           "clientAuthenticatorType": "client-secret",
-          "redirectUris": ["https://dome-wallet.eu"],
+          "redirectUris": ["https://dome-wallet.eu/callback"],
           "webOrigins": ["https://dome-wallet.eu"],
           "notBefore": 0,
           "bearerOnly": false,
@@ -939,7 +939,7 @@ data:
           "protocol": "openid-connect",
           "attributes": {
             "client.secret.creation.time": "1697455490",
-            "post.logout.redirect.uris": "https://dome-wallet.eu##https://dome-wallet.eu",
+            "post.logout.redirect.uris": "https://dome-wallet.eu",
             "oauth2.device.authorization.grant.enabled": "false",
             "backchannel.logout.revoke.offline.tokens": "false",
             "use.refresh.tokens": "true",
