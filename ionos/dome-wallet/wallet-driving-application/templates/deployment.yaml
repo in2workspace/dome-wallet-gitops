@@ -17,21 +17,19 @@ spec:
         app.kubernetes.io/name: wallet-driving-application
     spec:
       containers:
-      - image: in2kizuna/wallet-driving-application:v2.0.0
+      - image: in2kizuna/wallet-driving-application:v1.0.0
         imagePullPolicy: Always
         name: wallet-driving-application
         env:
-        - name: WCA_URL
-          value: "https://dome-wallet.eu/wallet-creation-application"
-        - name: DATA_URL
-          value: "https://dome-wallet.eu/wallet-data"
-        - name: LOGIN_URL
-          value: "https://dome-wallet.eu/keycloak/realms/wallet"
-        - name: REGISTER_URL
-          value: "https://dome-wallet.eu/wallet-user-registry"
+        - name: SERVER_URL
+          value: "https://dome-wallet.eu/wallet-driving-application"
+        - name: IAM_URL
+          value: "https://dome-wallet.eu/keycloak"
+        - name: IAM_URI
+          value: "/realms/wallet"
         - name: EXECCONT_URI
           value: "/api/v2/execute-content"
-        - name: VP_URL
+        - name: VP_URI
           value: "/api/v2/verifiable-presentation"
         - name: CRED_URI
           value: "/api/v2/credentials"
@@ -39,3 +37,7 @@ spec:
           value: "/api/v2/credentials?credentialId="
         - name: USER_URI
           value: "/api/v2/users"
+        - name: WEBSOCKET_URL
+          value: "ws://dome-wallet.eu/wallet-driving-application"
+        - name: WEBSOCKET_URI
+          value: "/api/v2/pin"
