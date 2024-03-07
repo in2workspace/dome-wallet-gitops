@@ -3,7 +3,7 @@ ingress-nginx:
   controller:
     replicaCount: 2
     service:
-      #loadBalancerIP: 85.215.150.150
+      loadBalancerIP: 85.215.150.150
       annotations:
         cloud.ionos.com/node-selector: nodepool=ingress
     nodeSelector:
