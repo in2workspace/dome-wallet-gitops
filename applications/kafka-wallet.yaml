@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: ionos/dom-wallet/kafka
+    path: ionos/dome-wallet/kafka
     repoURL: https://github.com/in2workspace/dome-wallet-gitops
     targetRevision: HEAD
   syncPolicy:
