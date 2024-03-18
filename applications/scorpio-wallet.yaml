@@ -12,7 +12,7 @@ spec:
   project: default
   source:
     path: ionos/dome-wallet/scorpio
-    repoURL: https://github.com/said-ibrihen-orange/dome-gitops
+    repoURL: https://github.com/in2workspace/dome-wallet-gitops
     targetRevision: HEAD
   syncPolicy:
     automated:
