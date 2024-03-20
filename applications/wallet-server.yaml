@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: wallet-server
+  namespace: argocd
+  labels:
+    purpose: wallet
+spec:
+  destination:
+    namespace: dome-wallet
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: ionos/dome-wallet/wallet-server
+    repoURL: https://github.com/in2workspace/dome-wallet-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

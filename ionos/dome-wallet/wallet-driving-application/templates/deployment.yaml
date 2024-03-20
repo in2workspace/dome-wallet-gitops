@@ -22,7 +22,7 @@ spec:
         name: wallet-driving-application
         env:
         - name: SERVER_URL
-          value: "https://dome-wallet.eu/wallet-driving-application"
+          value: "https://dome-wallet.eu/wallet-server"
         - name: IAM_URL
           value: "https://dome-wallet.eu/keycloak"
         - name: IAM_URI
@@ -38,6 +38,6 @@ spec:
         - name: USER_URI
           value: "/api/v2/users"
         - name: WEBSOCKET_URL
-          value: "ws://dome-wallet.eu/wallet-driving-application"
+          value: "ws://dome-wallet.eu/wallet-server"
         - name: WEBSOCKET_URI
           value: "/api/v2/pin"
