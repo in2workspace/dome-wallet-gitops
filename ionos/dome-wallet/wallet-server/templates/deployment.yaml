@@ -102,3 +102,5 @@ spec:
           value: "8201"
         - name: "LOGGING_LEVEL_ORG_SPRINGFRAMEWORK"
           value: "DEBUG"
+        - name: "SERVER_SERVLET_CONTEXT_PATH"
+          value: "/wallet-server"
