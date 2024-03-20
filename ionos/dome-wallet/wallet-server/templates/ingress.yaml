@@ -6,6 +6,8 @@ metadata:
   annotations: 
     cert-manager.io/cluster-issuer: letsencrypt-dome-wallet
     nginx.ingress.kubernetes.io/enable-websocket: "true"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "240"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "240"
 spec:
   ingressClassName: nginx
   rules:
