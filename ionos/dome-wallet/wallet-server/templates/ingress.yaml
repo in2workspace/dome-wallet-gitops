@@ -5,6 +5,7 @@ metadata:
   namespace: dome-wallet
   annotations: 
     cert-manager.io/cluster-issuer: letsencrypt-dome-wallet
+    nginx.ingress.kubernetes.io/enable-websocket: "true"
 spec:
   ingressClassName: nginx
   rules:
