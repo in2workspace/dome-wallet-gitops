@@ -1,0 +1,100 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: wallet-server
+  name: wallet-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: wallet-server
+      app.kubernetes.io/name: wallet-server
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: wallet-server
+        app.kubernetes.io/name: wallet-server
+    spec:
+      containers:
+      - image: in2kizuna/wallet-server:v1.1.0-SNAPSHOT
+        imagePullPolicy: Always
+        name: wallet-server
+        env:
+        # Logging Configuration
+        - name: LOGGING_LEVEL_ES_IN2_WALLET_SERVER
+          value: "DEBUG"
+        - name: OPENAPI_SERVER_URL
+          value: "https://dome-wallet.eu/wallet-server"
+        - name: OPENAPI_SERVER_DESCRIPTION
+          value: "Wallet Server"
+        # OpenAPI Configuration
+        - name: OPENAPI_INFO_TITLE
+          value: "Wallet Server"
+        - name: OPENAPI_INFO_DESCRIPTION
+          value: "Wallet Server Component"
+        - name: OPENAPI_INFO_VERSION
+          value: "1.1.0"
+        - name: OPENAPI_INFO_TERMS_OF_SERVICE
+          value: "https://example.com/terms"
+        - name: OPENAPI_INFO_LICENSE_NAME
+          value: "Apache 2.0"
+        - name: OPENAPI_INFO_LICENSE_URL
+          value: "https://www.apache.org/licenses/LICENSE-2.0.html"
+        - name: OPENAPI_INFO_CONTACT_NAME
+          value: "IN2, Ingeniería de la Información"
+        - name: OPENAPI_INFO_CONTACT_URL
+          value: "https://in2.es"
+        - name: OPENAPI_INFO_CONTACT_EMAIL
+          value: "contacto@in2.es"
+        # CORS
+        - name: WALLET_WDA_URL
+          value: "https://dome-wallet.eu/wallet-driving-application"
+        # RETROCOMPATIBILITY
+        - name: AUTH_SERVER_DOMAIN
+          value: "https://issuerkeycloak.demo.in2.es/realms/EAAProvider"
+        - name: AUTH_SERVER_TOKEN_ENDPOINT
+          value: "https://issuerkeycloak.demo.in2.es/realms/EAAProvider/verifiable-credential/did:key:z6MkqmaCT2JqdUtLeKah7tEVfNXtDXtQyj4yxEgV11Y5CqUa/token"
+        # IDP
+        - name: IDENTITY_PROVIDER_URL
+          value: "https://dome-wallet.eu/keycloak/realms/wallet/protocol/openid-connect/token"
+        - name: IDENTITY_PROVIDER_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: wallet-server-secret
+              key: IDENTITY_PROVIDER_CLIENT_SECRET
+        - name: IDENTITY_PROVIDER_CLIENT_ID
+          value: "user-registry-client"
+        - name: IDENTITY_PROVIDER_USERNAME
+          value: "adminWallet"
+        - name: IDENTITY_PROVIDER_PASSWORD
+          value: "adminPass"
+        # BROKER  
+        - name: BROKER_PROVIDER
+          value: "scorpio"
+        - name: BROKER_EXTERNAL_URL_DOMAIN
+          value: "localhost"
+        - name: BROKER_EXTERNAL_URL_PORT
+          value: "9090"
+        - name: BROKER_INTERNAL_URL_DOMAIN
+          value: "localhost"
+        - name: BROKER_INTERNAL_URL_PORT
+          value: "9090"
+        - name: BROKER_PATHS_ENTITIES
+          value: "/ngsi-ld/v1/entities"
+        # VAULT
+        - name: VAULT_PROVIDER_NAME
+          value: "hashicorp"
+        - name: HASHICORP_VAULT_HOST
+          value: "localhost"
+        - name: HASHICORP_VAULT_TOKEN
+          value: ""
+        - name: HASHICORP_VAULT_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: wallet-server-secret
+              key: HASHICORP_VAULT_TOKEN
+        - name: HASHICORP_VAULT_SCHEME
+          value: "http"
+        - name: HASHICORP_VAULT_PORT
+          value: "8201"

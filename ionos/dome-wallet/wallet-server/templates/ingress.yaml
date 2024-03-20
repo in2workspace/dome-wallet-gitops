@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wallet-server
+  namespace: dome-wallet
+  annotations: 
+    cert-manager.io/cluster-issuer: letsencrypt-dome-wallet
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: dome-wallet.eu
+    http:
+      paths:
+      - backend:
+          service:
+            name: wallet-server
+            port:
+              number: 8080
+        path: /wallet-server
+        pathType: Prefix
+  tls:
+  - hosts:
+    - dome-wallet.eu
+    secretName: dome-wallet-secret
