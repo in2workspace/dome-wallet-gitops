@@ -48,8 +48,10 @@ spec:
         - name: OPENAPI_INFO_CONTACT_EMAIL
           value: "contacto@in2.es"
         # CORS
-        - name: WALLET_WDA_URL
-          value: "https://dome-wallet.eu"
+        - name: WALLET_WDA_URLS_SCHEME
+          value: "https"
+        - name: WALLET_WDA_URLS_DOMAIN
+          value: "dome-wallet.eu"
         # RETROCOMPATIBILITY
         - name: AUTH_SERVER_DOMAIN
           value: "https://issuerkeycloak.demo.in2.es/realms/EAAProvider"
