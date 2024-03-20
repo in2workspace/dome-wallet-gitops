@@ -38,6 +38,6 @@ spec:
         - name: USER_URI
           value: "/api/v2/users"
         - name: WEBSOCKET_URL
-          value: "ws://dome-wallet.eu/wallet-server"
+          value: "wss://dome-wallet.eu/wallet-server"
         - name: WEBSOCKET_URI
           value: "/api/v2/pin"
