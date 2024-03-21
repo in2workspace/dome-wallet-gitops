@@ -75,13 +75,13 @@ spec:
         - name: BROKER_PROVIDER
           value: "scorpio"
         - name: BROKER_EXTERNAL_URL_DOMAIN
-          value: "localhost"
+          value: "scorpio"
         - name: BROKER_EXTERNAL_URL_PORT
-          value: "9090"
+          value: "1026"
         - name: BROKER_INTERNAL_URL_DOMAIN
-          value: "localhost"
+          value: "scorpio"
         - name: BROKER_INTERNAL_URL_PORT
-          value: "9090"
+          value: "1026"
         - name: BROKER_PATHS_ENTITIES
           value: "/ngsi-ld/v1/entities"
         # VAULT
