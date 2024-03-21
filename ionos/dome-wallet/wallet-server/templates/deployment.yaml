@@ -88,7 +88,7 @@ spec:
         - name: VAULT_PROVIDER_NAME
           value: "hashicorp"
         - name: HASHICORP_VAULT_HOST
-          value: "vault"
+          value: "vault-wallet-server"
         - name: HASHICORP_VAULT_TOKEN
           valueFrom:
             secretKeyRef:
