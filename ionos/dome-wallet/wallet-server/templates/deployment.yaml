@@ -90,8 +90,6 @@ spec:
         - name: HASHICORP_VAULT_HOST
           value: "localhost"
         - name: HASHICORP_VAULT_TOKEN
-          value: ""
-        - name: HASHICORP_VAULT_TOKEN
           valueFrom:
             secretKeyRef:
               name: wallet-server-secret
@@ -99,7 +97,7 @@ spec:
         - name: HASHICORP_VAULT_SCHEME
           value: "http"
         - name: HASHICORP_VAULT_PORT
-          value: "8201"
+          value: "8200"
         - name: "LOGGING_LEVEL_ORG_SPRINGFRAMEWORK"
           value: "DEBUG"
         - name: "SPRING_WEBFLUX_BASEPATH"
