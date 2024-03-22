@@ -231,3 +231,21 @@ Blue-Green Deployments on the cluster will be done through two mechanisms:
 - explicitly creating Rollout-Specs(see the [official documentation](https://argo-rollouts.readthedocs.io/en/stable/features/specification/))
 
 > :warning: Be aware how Blue-Green Rollouts work and there limitations. Since they create a second instance of the application, this is only suitable for stateless-applications(as a Deployment-Resource should be). Stateful-Applications can lead to bad results like deadlocks. If the applications takes care of Datamigrations, configure it to not migrate before Promotion and connect the new revision to another database. To disable the [Rollout-Injection](https://github.com/wistefan/rollout-injecting-webhook), annotate the deployment with ```wistefan/rollout-injecting-webhook: ignore```
+
+## WebSocket Support Configuration
+
+For enabling WebSocket connections in our Kubernetes environment, specifically for components acting as WebSocket servers, it is crucial to configure the Nginx Ingress Controller properly. This configuration ensures that WebSocket connections are stable and can be maintained without interruptions. Here are the annotations necessary for WebSocket support on the Ingress resource of the WebSocket server component:
+
+```yaml
+nginx.ingress.kubernetes.io/enable-websocket: "true"
+nginx.ingress.kubernetes.io/proxy-read-timeout: "240"
+nginx.ingress.kubernetes.io/proxy-send-timeout: "240"
+```
+
+### Explanation
+
+- **nginx.ingress.kubernetes.io/enable-websocket: "true"**: This annotation explicitly enables WebSocket support for the Ingress associated with our WebSocket server. It ensures that the Nginx Ingress Controller handles WebSocket upgrade requests correctly, crucial for initiating WebSocket connections.
+
+- **nginx.ingress.kubernetes.io/proxy-read-timeout: "240"** and **nginx.ingress.kubernetes.io/proxy-send-timeout: "240"**: These annotations increase the proxy read and send timeouts, respectively, to 240 seconds (4 min). WebSocket connections often remain open for extended periods without sending data, which makes these adjustments necessary to prevent the connections from being closed prematurely due to idle timeouts.
+
+By applying these annotations to the Ingress resource of the WebSocket server, we ensure that WebSocket connections are properly supported and maintained, allowing for real-time communication between the client and server without interruption.
