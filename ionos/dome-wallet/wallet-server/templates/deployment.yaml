@@ -58,18 +58,18 @@ spec:
         - name: AUTH_SERVER_TOKEN_ENDPOINT
           value: "https://issuerkeycloak.demo.in2.es/realms/EAAProvider/verifiable-credential/did:key:z6MkqmaCT2JqdUtLeKah7tEVfNXtDXtQyj4yxEgV11Y5CqUa/token"
         # IDP
-        - name: IDENTITY_PROVIDER_URL
+        - name: EBSI_TEST_URL
           value: "https://dome-wallet.eu/keycloak/realms/wallet/protocol/openid-connect/token"
-        - name: IDENTITY_PROVIDER_CLIENT_SECRET
+        - name: EBSI_TEST_CLIENT_SECRET
           valueFrom:
             secretKeyRef:
               name: wallet-server-secret
-              key: IDENTITY_PROVIDER_CLIENT_SECRET
-        - name: IDENTITY_PROVIDER_CLIENT_ID
+              key: EBSI_TEST_CLIENT_SECRET
+        - name: EBSI_TEST_CLIENT_ID
           value: "user-registry-client"
-        - name: IDENTITY_PROVIDER_USERNAME
+        - name: EBSI_TEST_USERNAME
           value: "adminWallet"
-        - name: IDENTITY_PROVIDER_PASSWORD
+        - name: EBSI_TEST_PASSWORD
           value: "adminPass"
         # BROKER  
         - name: BROKER_PROVIDER
