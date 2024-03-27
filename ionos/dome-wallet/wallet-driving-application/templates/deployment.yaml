@@ -17,7 +17,7 @@ spec:
         app.kubernetes.io/name: wallet-driving-application
     spec:
       containers:
-      - image: in2kizuna/wallet-driving-application:v1.0.0
+      - image: in2kizuna/wallet-driving-application:v1.1.0-SNAPSHOT
         imagePullPolicy: Always
         name: wallet-driving-application
         env:
@@ -28,16 +28,18 @@ spec:
         - name: IAM_URI
           value: "/realms/wallet"
         - name: EXECCONT_URI
-          value: "/api/v2/execute-content"
+          value: "/api/v1/execute-content"
         - name: VP_URI
-          value: "/api/v2/verifiable-presentation"
+          value: "/api/v1/verifiable-presentation"
         - name: CRED_URI
-          value: "/api/v2/credentials"
+          value: "/api/v1/credentials"
         - name: CREDID_URI
-          value: "/api/v2/credentials?credentialId="
+          value: "/api/v1/credentials?credentialId="
         - name: USER_URI
-          value: "/api/v2/users"
+          value: "/api/v1/users"
         - name: WEBSOCKET_URL
           value: "wss://dome-wallet.eu/wallet-server"
         - name: WEBSOCKET_URI
-          value: "/api/v2/pin"
+          value: "/api/v1/pin"
+        - name: CBOR_URI
+          value: "/api/v1/vp/cbor"
