@@ -43,3 +43,5 @@ spec:
           value: "/api/v1/pin"
         - name: CBOR_URI
           value: "/api/v1/vp/cbor"
+        - name: REQCRED_URI
+          value: "/api/v1/request-credential"
