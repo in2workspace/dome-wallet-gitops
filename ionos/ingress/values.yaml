@@ -10,6 +10,6 @@ ingress-nginx:
       nodepool: ingress
     kind: DaemonSet
     config:
-      large-client-header-buffers: "8 32k"
+      large-client-header-buffers: "8 64k"
       http2-max-field-size: "32k"
-      http2-max-header-size: "32k"
+      http2-max-header-size: "64k"
