@@ -13,3 +13,7 @@ ingress-nginx:
       large-client-header-buffers: "8 128k"
       http2-max-field-size: "32k"
       http2-max-header-size: "128k"
+      proxy-buffer-size: "128k"
+      proxy-buffers: "256k"
+      proxy-busy-buffers-size: "256k"
+
