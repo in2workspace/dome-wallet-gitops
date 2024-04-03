@@ -1,7 +1,7 @@
 
 keycloak:
   image: 
-    tag: 24.0.1-debian-11-r1
+    tag: 24.0.2-debian-12-r1
   service:
     type: ClusterIP
   logging:
