@@ -3,7 +3,7 @@ name: keycloak
 description: A Helm chart for Kubernetes to deploy Keycloak
 type: application
 version: 1.0.3
-appVersion: "17.0.1"
+appVersion: "24.0.1"
 dependencies:
 - name: keycloak
   version: 24.0.1
