@@ -6,5 +6,5 @@ version: 1.0.3
 appVersion: "24.0.1"
 dependencies:
 - name: keycloak
-  version: 13.0.3
+  version: 24.0.1
   repository: https://charts.bitnami.com/bitnami
