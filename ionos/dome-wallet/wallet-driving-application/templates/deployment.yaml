@@ -17,7 +17,7 @@ spec:
         app.kubernetes.io/name: wallet-driving-application
     spec:
       containers:
-      - image: in2kizuna/wallet-driving-application:v1.1.1-SNAPSHOT
+      - image: in2kizuna/wallet-driving-application:v1.1.0
         imagePullPolicy: Always
         name: wallet-driving-application
         env:
