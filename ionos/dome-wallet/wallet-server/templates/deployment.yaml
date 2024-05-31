@@ -17,7 +17,7 @@ spec:
         app.kubernetes.io/name: wallet-server
     spec:
       containers:
-      - image: in2kizuna/wallet-server:v1.1.2
+      - image: in2workspace/wallet-server:v1.1.4
         imagePullPolicy: Always
         name: wallet-server
         env:
